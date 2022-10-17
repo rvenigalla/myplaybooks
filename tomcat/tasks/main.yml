@@ -1,0 +1,42 @@
+---
+# tasks file for tomcat
+  - name: installing tomcat
+    yum:
+      name: tomcat
+      state: latest
+    when: ansible_distribution == "Amazon"
+
+  - name: installing tomcat
+    apt:
+      name:
+        - tomcat9
+        - tomcat9-admin
+      state: latest
+    when: ansible_os_family == "Debian"
+
+  - name: start tomcat
+    service: 
+      name: tomcat
+      state: started 
+    when: ansible_distribution == "Amazon"
+ 
+  - name: start tomcat
+    service:
+      name: tomcat9
+      state: started
+    when: ansible_os_family == "Debian"
+ 
+  - name: conf tomcat server
+    template: 
+      src: server.xml 
+      dest: /usr/share/tomcat/conf
+    notify: restart tomcat
+    when: ansible_distribution == "Amazon"
+
+  - name: conf tomcat server
+    template:
+      src: server9.xml
+      dest: /var/lib/tomcat9/conf/server.xml
+    notify: restart tomcat9
+    when: ansible_os_family == "Debian"
+

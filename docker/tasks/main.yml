@@ -1,0 +1,29 @@
+---
+# tasks file for docker
+  - name: installing docker
+    yum:
+      name: docker
+      state: latest
+    when: ansible_distribution == "Amazon"
+
+  - name: installing docker dependency 
+    apt:
+      deb: https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/containerd.io_1.6.8-1_amd64.deb
+    when: ansible_os_family == "Debian"
+
+  - name: installing docker cli
+    apt:
+      deb: https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce-cli_20.10.19~3-0~ubuntu-jammy_amd64.deb
+    when: ansible_os_family == "Debian"
+
+  - name: installing docker
+    apt:
+      deb: https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce_20.10.19~3-0~ubuntu-jammy_amd64.deb
+    when: ansible_os_family == "Debian"
+
+  - name: installing compose
+    apt:
+      deb: https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-compose-plugin_2.6.0~ubuntu-jammy_amd64.deb
+    when: ansible_os_family == "Debian"
+
+

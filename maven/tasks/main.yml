@@ -1,0 +1,13 @@
+---
+# tasks file for maven
+  - name: installing mvn
+    yum:
+      name: maven
+      state: latest
+    when: ansible_distribution == "Amazon"
+
+  - name: installing mvn
+    apt:
+      name: maven
+      state: latest
+    when: ansible_os_family == "Debian"  

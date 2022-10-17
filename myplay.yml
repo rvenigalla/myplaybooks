@@ -1,0 +1,11 @@
+---
+  - name: Playbook
+    hosts: webservers
+    become: yes
+    become_user: root
+    roles: 
+      - java
+      - maven
+      - tomcat
+      - docker
+ 
