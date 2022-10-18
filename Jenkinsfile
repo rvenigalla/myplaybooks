@@ -4,7 +4,8 @@ pipeline {
 
   stage('Run Playbook') {
     steps {
-      ansiblePlaybook installation: 'ansible', inventory: '/home/ec2-user/inventory.ini', playbook: 'myplay1.yml'
+      sh '/bin/ansible-playbook -i /home/ec2-user/inventory.ini myplay1.yml'
+      
     }
   }
  } 
